@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="Develop/style.css" />
+
+    <title>Weather Dashboard</title>
+  </head>
+
+  <body>
+    <header class="jumbotron">
+      <h1 class="display-3">Weather Dashboard</h1>
+    </header>
+    <div class="container">
+      <!-- Current City -->
+      <div>
+        <button id="search">city</button>
+        <input id="searchValue" type="text">
+      </div>
+   <!-- Retrieved data will be dumped here -->
+   <div class="city"></div>
+   <div class="wind"></div>
+   <div class="humidity"></div>
+   <div class="temp"></div>
+    <script type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      
+
+        $(document).ready(function() {
+          $("#search").on("click", function(){
+            var searchValue = $("#searchValue").val()
+            currentWeather(searchValue)
+            console.log(searchValue)
+          })
+          // This is our API key. Add your own API key between the ""
+      var APIKey = "988c3620d7b8b93676443618f9978507";
+
+// Here we are building the URL we need to query the database
+
+       function currentWeather(city) {
+            // We then created an AJAX call
+      $.ajax({
+        url: "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=" +
+  APIKey, 
+        method: "GET",
+      }).then(function (response) {
+        console.log(response);
+        // Create CODE HERE to Log the queryURL xdonex
+        // Create CODE HERE to log the resulting object
+        // Create CODE HERE to calculate the temperature (converted from Kelvin)
+        // Create CODE HERE to transfer content to HTML
+        // Hint: To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
+        // Create CODE HERE to dump the temperature content into HTML
+      });
+       }
+        });
+      
+    </script>
+  </body>
+</html>
