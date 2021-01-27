@@ -19,61 +19,150 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="Develop/style.css" />
-
     <title>Weather Dashboard</title>
   </head>
-
   <body>
     <header class="jumbotron">
       <h1 class="display-3">Weather Dashboard</h1>
     </header>
+    </div>
     <div class="container">
-      <!-- Current City -->
-      <div>
-        <button id="search">city</button>
-        <input id="searchValue" type="text">
+      <div class="search-box">
+        <form class=>
+          <p>Search for a City:</p>
+        </form>
+        </div>
+       <input id="searchValue" type="text" placeholder="City..."/>
+       <button id="search" class="btn btn-primary">Search</button>
+       <!-- Retrieved data will be dumped here -->
+       <div class="container">
+        <div class="row">
+          <div id="currentWeather" class="col-md-8">
+            
+          </div>
       </div>
-   <!-- Retrieved data will be dumped here -->
-   <div class="city"></div>
-   <div class="wind"></div>
-   <div class="humidity"></div>
-   <div class="temp"></div>
+      <div class="row">
+        <div class="col-md-2">
+          <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div class="card" style="width: 18rem;">
+                      <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-2">
+                          <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                              <h5 class="card-title">Card title</h5>
+                              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+    </div>
+    <!-- <div class="sidenav"> -->
+      <!-- <div class="search-box">
+        <form class=>
+          <p>Search for a City:</p>
+        </form>
+        </div>
+       <input id="searchValue" type="text" placeholder="City..."/>
+       <button id="search" class="btn btn-primary">Search</button>
+    <!-- Retrieved data will be dumped here -->
+<div>
+</div>
     <script type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
-      
-
-        $(document).ready(function() {
-          $("#search").on("click", function(){
-            var searchValue = $("#searchValue").val()
-            currentWeather(searchValue)
-            console.log(searchValue)
-          })
-          // This is our API key. Add your own API key between the ""
-      var APIKey = "988c3620d7b8b93676443618f9978507";
-
-// Here we are building the URL we need to query the database
-
-       function currentWeather(city) {
-            // We then created an AJAX call
-      $.ajax({
-        url: "https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=" +
-  APIKey, 
-        method: "GET",
-      }).then(function (response) {
-        console.log(response);
-        // Create CODE HERE to Log the queryURL xdonex
-        // Create CODE HERE to log the resulting object
-        // Create CODE HERE to calculate the temperature (converted from Kelvin)
-        // Create CODE HERE to transfer content to HTML
-        // Hint: To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
-        // Create CODE HERE to dump the temperature content into HTML
-      });
-       }
+      $(document).ready(function () {
+        $("#search").on("click", function () {
+          var searchValue = $("#searchValue").val();
+          currentWeather(searchValue);
+          console.log(searchValue);
         });
+        // This is our API key. Add your own API key between the ""
+        var APIKey = "988c3620d7b8b93676443618f9978507";
+
+        // Here we are building the URL we need to query the database
+
+        function currentWeather(city) {
+          // We then created an AJAX call
+          $.ajax({
+            url:
+              "https://api.openweathermap.org/data/2.5/weather?q=" +
+              city +
+              "&appid=" +
+              APIKey,
+            method: "GET",
+          }).then(function (response) {
+            console.log(response);
+            localStorage.setItem("history", JSON.stringify(city))
+            var title = $("<h3>").addClass("card-title").text(city)
+            var card = $("<div>").addClass("card")
+            var temperature = $("<p>").addClass("card-text").text(response.main.temp)
+            var humidity = $("<p>").addClass("card-text").text(response.main.humidity)
+            var wind = $("<p>").addClass("card-text").text(response.wind.speed)
+            var uvIndex = $("<p>").addClass("card-text").text(response.main.temp)
+            var cardBody = $("<div>").addClass("card-body")
+            cardBody.append(title, temperature, humidity, wind, uvIndex)
+            card.append(cardBody)
+            $("#currentWeather").append(card)
+              
+
+                       // Create CODE HERE to Log the queryURL xdonex
+            // Create CODE HERE to log the resulting object
+            // Create CODE HERE to calculate the temperature (converted from Kelvin)
+            // Create CODE HERE to transfer content to HTML
+            // Hint: To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
+            // Create CODE HERE to dump the temperature content into HTML
+          }).catch(function (error){
+            console.log(error)
+          })
+        
+        }
+      });
       
+  //   add to search input results to search history
+  //   localStorage.setItem("searchInfo", JSON.stringify(user));
     </script>
+    <script></script>
+    <!-- GIVEN a weather dashboard with form inputs
+    WHEN I search for a city
+    THEN I am presented with current and future conditions for that city and that city is added to the search history
+    WHEN I view current weather conditions for that city
+    THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
+    WHEN I view the UV index
+    THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
+    WHEN I view future weather conditions for that city
+    THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity
+    WHEN I click on a city in the search history
+    THEN I am again presented with current and future conditions for that city
+    WHEN I open the weather dashboard
+    THEN I am presented with the last searched city forecast -->
   </body>
 </html>
