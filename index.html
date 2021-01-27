@@ -104,11 +104,25 @@
           var searchValue = $("#searchValue").val();
           currentWeather(searchValue);
           console.log(searchValue);
-        });
+        
+      // implement url UV index
+      var uvIndexEndpoint = "/data/2.5/uvi?lat=" + response.coord.lat + "&lon=" + response.coord.lon + APIKey;
+      var uvIndexQueryURL = baseURL + uvIndexEndpoint;
+     // separate AJAX request to retrieve lat and long for UV index
+    console.log(uvIndexQueryURL);
+    $.ajax({
+            url: uvIndexQueryURL,
+            method: 'GET'
+        }).then (function(response) {
+            console.log(response);
+            $('.uv-index').html('UV Index: ' + response.value);
+        })
+    });
         // This is our API key. Add your own API key between the ""
         var APIKey = "988c3620d7b8b93676443618f9978507";
 
         // Here we are building the URL we need to query the database
+       
 
         function currentWeather(city) {
           // We then created an AJAX call
@@ -127,7 +141,7 @@
             var temperature = $("<p>").addClass("card-text").text(response.main.temp)
             var humidity = $("<p>").addClass("card-text").text(response.main.humidity)
             var wind = $("<p>").addClass("card-text").text(response.wind.speed)
-            var uvIndex = $("<p>").addClass("card-text").text(response.main.temp)
+            var uvIndex = $("<p>").addClass("card-text").text(response.value)
             var cardBody = $("<div>").addClass("card-body")
             cardBody.append(title, temperature, humidity, wind, uvIndex)
             card.append(cardBody)
@@ -151,6 +165,7 @@
   //   localStorage.setItem("searchInfo", JSON.stringify(user));
     </script>
     <script></script>
+   
     <!-- GIVEN a weather dashboard with form inputs
     WHEN I search for a city
     THEN I am presented with current and future conditions for that city and that city is added to the search history
