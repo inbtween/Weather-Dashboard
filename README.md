@@ -1,6 +1,7 @@
 The following links of my github repo and github page. And a screenshot the page working.
 https://github.com/inbtween/Weather-Dashboard.git
 https://inbtween.github.io/Weather-Dashboard/
+https://github.com/inbtween/Weather-Dashboard
 
 ![screen shot](./Assets/)
 

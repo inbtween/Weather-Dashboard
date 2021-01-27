@@ -104,19 +104,27 @@
           var searchValue = $("#searchValue").val();
           currentWeather(searchValue);
           console.log(searchValue);
-        
-      // implement url UV index
-      var uvIndexEndpoint = "/data/2.5/uvi?lat=" + response.coord.lat + "&lon=" + response.coord.lon + APIKey;
-      var uvIndexQueryURL = baseURL + uvIndexEndpoint;
-     // separate AJAX request to retrieve lat and long for UV index
-    console.log(uvIndexQueryURL);
-    $.ajax({
+          
+          $.get("https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=988c3620d7b8b93676443618f9978507", function(data) {
+          console.log(data);
+          // write a function that makes the call to the uv index endpoint and takes 2 arguments (lat and lon)
+          // implement url UV index
+        var uvIndexEndpoint = "/data/2.5/weather?q=London,uk&";
+        var uvIndexQueryURL = 
+        // separate AJAX request to retrieve lat and long for UV index
+        console.log(uvIndexQueryURL);
+        $.ajax({
             url: uvIndexQueryURL,
             method: 'GET'
         }).then (function(response) {
             console.log(response);
             $('.uv-index').html('UV Index: ' + response.value);
         })
+          //  then, make the first api call to get the weather, parse it to get the lat and lon.
+          //  then call that function to get the uv index data
+          // append that response to the DOM and DONE!
+});
+  
     });
         // This is our API key. Add your own API key between the ""
         var APIKey = "988c3620d7b8b93676443618f9978507";
@@ -128,7 +136,7 @@
           // We then created an AJAX call
           $.ajax({
             url:
-              "https://api.openweathermap.org/data/2.5/weather?q=" +
+              "https://api.openweathermap.org/data/2.5/weather?&units=imperial&q=" +
               city +
               "&appid=" +
               APIKey,
@@ -137,6 +145,8 @@
             console.log(response);
             localStorage.setItem("history", JSON.stringify(city))
             var title = $("<h3>").addClass("card-title").text(city)
+            var date = $("<h3>").addClass("card-title").text("")
+              console.log(date) 
             var card = $("<div>").addClass("card")
             var temperature = $("<p>").addClass("card-text").text(response.main.temp)
             var humidity = $("<p>").addClass("card-text").text(response.main.humidity)
@@ -146,6 +156,7 @@
             cardBody.append(title, temperature, humidity, wind, uvIndex)
             card.append(cardBody)
             $("#currentWeather").append(card)
+            
               
 
                        // Create CODE HERE to Log the queryURL xdonex
