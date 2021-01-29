@@ -131,44 +131,30 @@
 
         // Here we are building the URL we need to query the database
        
-        // Five Day Weather
-        function fiveDay(afternoonWeather) {
-          console.log("Five Day", afternoonWeather)
+        // Five
+        function fiveDay(noonWeather) {
+          console.log("fiveDay", noonWeather)
+          var forecast = $(".forecast")
+          forecast.empty();
           // We then created an AJAX call
+          
           $.ajax({
             url:
-            `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`; +
+              "api.openweathermap.org/data/2.5/forecast?id=" +
+              city +
               "&appid=" +
               APIKey,
             method: "GET",
           }).then(function (response) {
             console.log(response);
-            localStorage.setItem("history", JSON.stringify(city))
-            var title = $("<h3>").addClass("card-title").text(city)
-            var date = $("<h3>").addClass("card-title").text("")
-              console.log(date) 
-            var card = $("<div>").addClass("card")
-            var temperature = $("<p>").addClass("card-text").text(response.main.temp)
-            var humidity = $("<p>").addClass("card-text").text(response.main.humidity)
-            var wind = $("<p>").addClass("card-text").text(response.wind.speed)
-            var uvIndex = $("<p>").addClass("card-text").text(response.value)
-            var cardBody = $("<div>").addClass("card-body")
-            cardBody.append(title, temperature, humidity, wind, uvIndex)
-            card.append(cardBody)
-            $("#currentWeather").append(card)
-            
-              
-
-                       // Create CODE HERE to Log the queryURL xdonex
-            // Create CODE HERE to log the resulting object
-            // Create CODE HERE to calculate the temperature (converted from Kelvin)
-            // Create CODE HERE to transfer content to HTML
-            // Hint: To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
-            // Create CODE HERE to dump the temperature content into HTML
-          }).catch(function (error){
-            console.log(error)
+            forecast += $("<p>")
+            forecast += $("<b>Day ").index("<b>: ")
+            forecast += response.main.temp.value("&degC")
+            forecast += $("<span> | " + val.weather[0].description + "</span");
+            forecast += $("<img src='https://openweathermap.org/img/w/").weather(val[0].icon + ".png")
+            forecast += $("<p>")
           })
-        
+          $("#showWeatherForcast").html(wf);
         }
       });
       
