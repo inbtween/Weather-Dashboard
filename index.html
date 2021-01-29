@@ -45,7 +45,7 @@
         <div class="col-md-2">
           <div class="card" style="width: 18rem;">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
+              <h5 class="card-title">5-Day Forecast</h5>
               <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
             </div>
@@ -110,7 +110,7 @@
           // write a function that makes the call to the uv index endpoint and takes 2 arguments (lat and lon)
           // implement url UV index
         var uvIndexEndpoint = "/data/2.5/weather?q=London,uk&";
-        var uvIndexQueryURL = 
+        var uvIndexQueryURL = "lat=37.75&lon=-122.37&start"
         // separate AJAX request to retrieve lat and long for UV index
         console.log(uvIndexQueryURL);
         $.ajax({
@@ -153,9 +153,10 @@
             var wind = $("<p>").addClass("card-text").text(response.wind.speed)
             var uvIndex = $("<p>").addClass("card-text").text(response.value)
             var cardBody = $("<div>").addClass("card-body")
-            cardBody.append(title, temperature, humidity, wind, uvIndex)
+            cardBody.append(title, 'Temp:', temperature, 'Humidity:', humidity, 'Wind:', wind,  'UVI:', uvIndex)
             card.append(cardBody)
             $("#currentWeather").append(card)
+            
             
               
 
