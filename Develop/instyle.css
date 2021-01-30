@@ -1,0 +1,178 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  line-height: 1;
+}
+
+h1 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: aliceblue;
+}
+
+textarea {
+  background: transparent;
+  border: 2px solid cornflowerblue;
+  resize: none;
+  color: #616161;
+  border-left: 2px solid black;
+  padding: none;
+}
+
+.jumbotron {
+  text-align: center;
+  background-color: rgb(75, 75, 75);
+  color: black;
+  border-radius: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the side navigation */
+.sidenav {
+  height: 90%;
+  width: 225px;
+  position: fixed;
+  z-index: 1;
+  top: 130px;
+  left: 0;
+  background-color: rgb(228, 228, 228);
+  overflow-x: hidden;
+}
+
+/* Side navigation links */
+.sidenav a {
+  color: white;
+  padding: 16px;
+  padding-top: none;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color on hover */
+.sidenav a:hover {
+  background-color: #ddd;
+  color: rgb(225, 225, 225);
+}
+
+/* Style the container */
+.container {
+  margin-left: 200px;
+  padding-left: 30px;
+}
+
+.searchbox {
+  padding-top: 10px;
+}
+
+.form-control {
+  margin-top: none;
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 02px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 0.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* The side navigation menu */
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+/* Page container. The value of the margin-left property should match the value of the sidebar's width property */
+div.container {
+  margin-left: 300px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {
+    float: left;
+  }
+  div.container {
+    margin-left: 0;
+  }
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+.square {
+  color: white;
+  height: 20%;
+  width: 20%px;
+  background-color: rgb(0, 115, 255);
+  border: 1px solid rgb(193, 193, 193) (181, 181, 181);
+  text-align: left;
+  float: left;
+  position: relative;
+  padding-bottom: 30%; /* = width for a 1:1 aspect ratio */
+  margin: 1.66%;
+  overflow: hidden;
+}
+
+#div-row {
+  position: absolute;
+  height: 80%; /* = 100% - 2*10% padding */
+  width: 90%; /* = 100% - 2*5% padding */
+  padding: 10% 5%;
+}
+
+.row {
+  margin-left: 0%;
+  padding-right: 0px;
+}
