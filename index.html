@@ -124,11 +124,13 @@
           }).then(function (response){
             console.log(response)
             for(var i = 0; i < response.list.length; i+=8) {
+              var iconUrl = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`
               var col = $("<div>").addClass("col-lg-2")
               var card = $("<div>").addClass("card")
               var cardBody = $("<div>").addClass("card-body")
               var title = $("<h5>").addClass("card-title").text(new Date(response.list[i].dt_txt).toLocaleDateString())
-
+              var temp = $("<h5>").addClass("card-title").text(response.list.temp + ' °F')
+              var humidity = $("<h5>").addClass("card-title").text(response.list.humidity + '%')
                 col.append(card.append(cardBody.append(title,)))
                 $("#daily-weather").append(col)
             }
