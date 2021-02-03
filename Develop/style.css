@@ -121,6 +121,10 @@ body {
   color: white;
 }
 
+ul {
+  text-align: left;
+}
+
 /* Page container. The value of the margin-left property should match the value of the sidebar's width property */
 div.container {
   margin-left: 120px;

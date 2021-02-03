@@ -176,3 +176,55 @@ div.container {
   margin-left: 0%;
   padding-right: 0px;
 }
+
+.card-body {
+  background-color: rgba(0, 140, 215, 0.988);
+}
+
+#current-city {
+  background-color: rgb(255, 255, 255);
+}
+
+ul {
+  padding-left: 0px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* see <div>s below */
+.container {
+  margin: auto;
+  width: 80%;
+}
+
+.fixed {
+  position: fixed;
+  background: #eee;
+  padding: 50px;
+  left: 0;
+  top: 0;
+}
+
+.relative {
+  position: relative;
+  background: #eee;
+  padding: 50px;
+  height: 200px;
+  text-align: center;
+}
+
+.absolute {
+  background: #777777;
+  z-index: 1;
+  bottom: 0;
+  right: -20px;
+  position: absolute;
+  padding: 50px;
+}
+/* <div class="container"></div>
+<div class="container"></div>
+<div class="fixed"></div>
+<div class="absolute"></div>
+<div class="relative"></div> */

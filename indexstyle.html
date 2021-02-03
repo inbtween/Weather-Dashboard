@@ -20,100 +20,187 @@
     <link rel="stylesheet" href="Develop/instyle.css" />
     <title>Weather Dashboard</title>
   </head>
-  <div class="jumbotron">
-    <h1 class="display-4">Hello, world!</h1>
-    <p class="lead">
-      This is a simple hero unit, a simple jumbotron-style component for calling
-      extra attention to featured content or information.
-    </p>
-    <hr class="my-4" />
-    <p>
-      It uses utility classes for typography and spacing to space content out
-      within the larger container.
-    </p>
-    <p class="lead">
-      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-    </p>
-  </div>
-  <div class="row">
-    <ul class="list-group">
-      <li class="list-group-item">Cras justo odio</li>
-      <li class="list-group-item">Dapibus ac facilisis in</li>
-      <li class="list-group-item">Morbi leo risus</li>
-      <li class="list-group-item">Porta ac consectetur ac</li>
-      <li class="list-group-item">Vestibulum at eros</li>
-    </ul>
-    <div class="card">
-      <div id="current-city" class="card-body">
-        <h2>current city weather</h2>
-        <ul>
-          temp
-        </ul>
-        <ul>
-          temp
-        </ul>
-        <ul>
-          temp
-        </ul>
-        <ul>
-          temp
-        </ul>
+  <body>
+    <div class="jumbotron">
+        <h1 class="display-4">Weather Dashboard</h1>
+        <!-- <p class="lead">
+          This is a simple hero unit, a simple jumbotron-style component for calling
+          extra attention to featured content or information.
+        </p>
+        <hr class="my-4" />
+        <p>
+          It uses utility classes for typography and spacing to space content out
+          within the larger container.
+        </p>
+        <p class="lead">
+          <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        </p> -->
+<!-- <div class="container"></div>
+<div class="container"></div>
+<div class="fixed"></div>
+<div class="absolute"></div>
+<div class="relative"></div> -->
       </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-2">
-                <div class="card" style="width: 20rem;">
-                    <div class="card-body">
-                    <h5 class="card-title">1/5</h5>
-                    <ul>date</ul>
-                    <ul>temp</ul>
-                    <ul>humidity</ul>
-                    </div>
-            </div>
-              </div>
-              <div class="col-sm-2">
-                <div class="card" style="width: 20rem;">
-                    <div class="card-body">
-                    <h5 class="card-title">1/5</h5>
-                    <ul>date</ul>
-                    <ul>temp</ul>
-                    <ul>humidity</ul>
-                    </div>
-            </div>
-              </div>
-              <div class="col-sm-2">
-                <div class="card" style="width: 51rem;">
-                    <div class="card-body">
-                    <h5 class="card-title">1/5</h5>
-                    <ul>date</ul>
-                    <ul>temp</ul>
-                    <ul>humidity</ul>
-                    </div>
-            </div>
-              </div>
-              <div class="col-sm-2">
-                <div class="card" style="width: 20rem;">
-                    <div class="card-body">
-                    <h5 class="card-title">1/5</h5>
-                    <ul>date</ul>
-                    <ul>temp</ul>
-                    <ul>humidity</ul>
-                    </div>
-            </div>
-              </div>
-              <div class="col-sm-2">
-                <div class="card" style="width: 20rem;">
-                    <div class="card-body">
-                    <h5 class="card-title">1/5</h5>
-                    <ul>date</ul>
-                    <ul>temp</ul>
-                    <ul>humidity</ul>
-                    </div>
-            </div>
-              </div>
-            </div>
+      <div class="row">
+        <ul class="list-group">
+          <li class="list-group-item">Cras justo odio</li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Morbi leo risus</li>
+          <li class="list-group-item">Porta ac consectetur ac</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+        <div class="card">
+          <div id="current-city" class="card-body">
+            <h2>current city weather</h2>
+            <ul>
+              temp
+            </ul>
+            <ul>
+              temp
+            </ul>
+            <ul>
+              temp
+            </ul>
+            <ul>
+              temp
+            </ul>
+          </div>
+        </div>
+        <div class="container">
+          <h3>5-Day Forecast:</h3>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="card">
+                        <div class="card-body">
+                        <h5 id="date" class="card-title">date</h5>
+                        <ul id="icon" class="card-text"></ul>icon</ul>
+                        <ul id="temp" class="card-text"></ul>temp:</ul>
+                        <ul id="humidity" class="card-text"></ul>humidity:</ul>
+                        </div>
+                </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="card">
+                        <div class="card-body">
+                        <h5 class="card-title">1/5</h5>
+                        <ul>date</ul>
+                        <ul>temp</ul>
+                        <ul>humidity</ul>
+                        </div>
+                </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="card">
+                        <div class="card-body">
+                        <h5 class="card-title">1/5</h5>
+                        <ul>date</ul>
+                        <ul>temp</ul>
+                        <ul>humidity</ul>
+                        </div>
+                </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="card">
+                        <div class="card-body">
+                        <h5 class="card-title">1/5</h5>
+                        <ul>date</ul>
+                        <ul>temp</ul>
+                        <ul>humidity</ul>
+                        </div>
+                </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="card">
+                        <div class="card-body">
+                        <h5 class="card-title">1/5</h5>
+                        <ul>date</ul>
+                        <ul>temp</ul>
+                        <ul>humidity</ul>
+                        </div>
+                </div>
+                  </div>
+                </div>
+        </div>
+    <script type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("#search").on("click", function () {
+          var searchValue = $("#searchValue").val();
+          currentWeather(searchValue);
+          console.log(searchValue);
+          
+          $.get("https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=988c3620d7b8b93676443618f9978507", function(data) {
+          console.log(data);
+          // write a function that makes the call to the uv index endpoint and takes 2 arguments (lat and lon)
+          // implement url UV index
+        var uvIndexEndpoint = "/data/2.5/weather?q=London,uk&";
+        var uvIndexQueryURL = "lat=37.75&lon=-122.37&start"
+        // separate AJAX request to retrieve lat and long for UV index
+        console.log(uvIndexQueryURL);
+        $.ajax({
+            url: uvIndexQueryURL,
+            method: 'GET'
+        }).then (function(response) {
+            console.log(response);
+            $('.uv-index').html('UV Index: ' + response.value);
+        })
+          //  then, make the first api call to get the weather, parse it to get the lat and lon.
+          //  then call that function to get the uv index data
+          // append that response to the DOM and DONE!
+});
+  
+    });
+        // This is our API key. Add your own API key between the ""
+        var APIKey = "988c3620d7b8b93676443618f9978507";
+
+        // Here we are building the URL we need to query the database
+       
+
+        function currentWeather(city) {
+          // We then created an AJAX call
+          $.ajax({
+            url:
+              "https://api.openweathermap.org/data/2.5/weather?&units=imperial&q=" +
+              city +
+              "&appid=" +
+              APIKey,
+            method: "GET",
+          }).then(function (response) {
+            console.log(response);
+            localStorage.setItem("history", JSON.stringify(city))
+            var title = $("<h3>").addClass("card-title").text(city)
+            var date = $("<h3>").addClass("card-title").text("")
+              console.log(date) 
+            var card = $("<div>").addClass("card")
+            var temperature = $("<p>").addClass("card-text").text(response.main.temp)
+            var humidity = $("<p>").addClass("card-text").text(response.main.humidity)
+            var wind = $("<p>").addClass("card-text").text(response.wind.speed)
+            var uvIndex = $("<p>").addClass("card-text").text(response.value)
+            var cardBody = $("<div>").addClass("card-body")
+            cardBody.append(title, 'Temp:', temperature, 'Humidity:', humidity, 'Wind:', wind,  'UVI:', uvIndex)
+            card.append(cardBody)
+            $("#currentWeather").prepend(card)
             
-    </div>
-  <body></body>
+            
+            
+              
+
+                       // Create CODE HERE to Log the queryURL xdonex
+            // Create CODE HERE to log the resulting object
+            // Create CODE HERE to calculate the temperature (converted from Kelvin)
+            // Create CODE HERE to transfer content to HTML
+            // Hint: To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
+            // Create CODE HERE to dump the temperature content into HTML
+          }).catch(function (error){
+            console.log(error)
+          })
+        
+        }
+      });
+      
+   </script>
+  </body>
 </html>

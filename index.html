@@ -39,16 +39,15 @@
         <div class="row">
           <div id="currentWeather" class="col-md-8">
           </div>
-          <div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-5Day">5-Day Forecast</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
+      <div class="container">
+        <h3>5-Day Forecast:</h3>
+          <div id="daily-weather" class="row">
+          </div>
+       </div>
+              </div>
+      </div>
+      </div>
      </div>
-
-<div>
-  
-</div>
     <script type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -64,17 +63,17 @@
           console.log(data);
           // write a function that makes the call to the uv index endpoint and takes 2 arguments (lat and lon)
           // implement url UV index
-        var uvIndexEndpoint = "/data/2.5/weather?q=London,uk&";
-        var uvIndexQueryURL = "lat=37.75&lon=-122.37&start"
-        // separate AJAX request to retrieve lat and long for UV index
-        console.log(uvIndexQueryURL);
-        $.ajax({
-            url: uvIndexQueryURL,
-            method: 'GET'
-        }).then (function(response) {
-            console.log(response);
-            $('.uv-index').html('UV Index: ' + response.value);
-        })
+        // var uvIndexEndpoint = "/data/2.5/weather?q=London,uk&";
+        // var uvIndexQueryURL = "lat=37.75&lon=-122.37&start"
+        // // separate AJAX request to retrieve lat and long for UV index
+        // console.log(uvIndexQueryURL);
+        // $.ajax({
+        //     url: uvIndexQueryURL,
+        //     method: 'GET'
+        // }).then (function(response) {
+        //     console.log(response);
+        //     $('.uv-index').html('UV Index: ' + response.value);
+        // })
           //  then, make the first api call to get the weather, parse it to get the lat and lon.
           //  then call that function to get the uv index data
           // append that response to the DOM and DONE!
@@ -99,7 +98,7 @@
           }).then(function (response) {
             console.log(response);
             localStorage.setItem("history", JSON.stringify(city))
-            var title = $("<h3>").addClass("card-title").text(city)
+            var title = $("<h3>").addClass("card-title").text(city + new Date().toLocaleDateString())
             var date = $("<h3>").addClass("card-title").text("")
               console.log(date) 
             var card = $("<div>").addClass("card")
@@ -111,11 +110,11 @@
             cardBody.append(title, 'Temp:', temperature, 'Humidity:', humidity, 'Wind:', wind,  'UVI:', uvIndex)
             card.append(cardBody)
             $("#currentWeather").prepend(card)
-            
-            
-            
-              
 
+            getUvindex(response.coord.lat, response.coord.lon) 
+            getForecast(city)
+
+          
                        // Create CODE HERE to Log the queryURL xdonex
             // Create CODE HERE to log the resulting object
             // Create CODE HERE to calculate the temperature (converted from Kelvin)
@@ -127,12 +126,47 @@
           })
         
         }
+        function getForecast(city) {
+          $.ajax({
+            url: `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIKey}`,
+            method: "GET"
+          }).then(function (response){
+            console.log(response)
+            for(var i = 0; i < response.list.length; i+=8) {
+              var col = $("<div>").addClass("col-lg-2")
+              var card = $("<div>").addClass("card")
+              var cardBody = $("<div>").addClass("card-body")
+              var title = $("<h5>").addClass("card-title").text(new Date(response.list[i].dt_txt).toLocaleDateString())
+
+                col.append(card.append(cardBody.append(title)))
+                $("#daily-weather").append(col)
+            }
+          }) 
+        }
+        function getUvindex(lat, lon) {
+          $.ajax({
+            url:
+              `https://api.openweathermap.org/data/2.5/uvi/forecast?lat=${lat}&lon=${lon}&cnt={cnt}&appid=${APIKey}`,
+            method: "GET",
+          }).then(function (response) {
+            console.log(response);
+            var uvIndex = $("<p>").addClass("card-text").text(response.value)
+            var cardBody = $("<div>").addClass("card-body")
+            cardBody.append(title, 'Temp:', temperature, 'Humidity:', humidity, 'Wind:', wind,  'UVI:', uvIndex)
+            card.append(cardBody)
+            uvIndex.append(card)
+
+          }
+
+          )
+        }
+        
       });
       
-  //   add to search input results to search history
+   </script>
+   <!-- //   add to search input results to search history
   //   localStorage.setItem("searchInfo", JSON.stringify(user));
-    </script>
-    <script></script>
+    -->
    
     <!-- GIVEN a weather dashboard with form inputs
     WHEN I search for a city
