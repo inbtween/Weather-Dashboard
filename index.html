@@ -61,22 +61,7 @@
 
           $.get("https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=988c3620d7b8b93676443618f9978507", function(data) {
           console.log(data);
-          // write a function that makes the call to the uv index endpoint and takes 2 arguments (lat and lon)
-          // implement url UV index
-        var uvIndexEndpoint = "/data/2.5/weather?q=London,uk&";
-        var uvIndexQueryURL = "lat=37.75&lon=-122.37&start"
-        // separate AJAX request to retrieve lat and long for UV index
-        console.log(uvIndexQueryURL);
-        $.ajax({
-            url: uvIndexQueryURL,
-            method: 'GET'
-        }).then (function(response) {
-            console.log(response);
-            $('.uv-index').html('UV Index: ' + response.value);
-        })
-          //  then, make the first api call to get the weather, parse it to get the lat and lon.
-          //  then call that function to get the uv index data
-          // append that response to the DOM and DONE!
+       
 });
 
     });
@@ -114,9 +99,8 @@
 
             getUvindex(response.coord.lat, response.coord.lon) 
             getForecast(city)
-
-
-                       // Create CODE HERE to Log the queryURL xdonex
+            
+            // Create CODE HERE to Log the queryURL xdonex
             // Create CODE HERE to log the resulting object
             // Create CODE HERE to calculate the temperature (converted from Kelvin)
             // Create CODE HERE to transfer content to HTML
@@ -174,19 +158,14 @@
             cardBody.append('UVI:', uvIndex)
             card.append(cardBody)
             $("#currentWeather").prepend(card)
-
-          }
-
-          )
+          })
         }
-
-      });
+       });
 
    </script>
    <!-- //   add to search input results to search history
   //   localStorage.setItem("searchInfo", JSON.stringify(user));
     -->
-
     <!-- GIVEN a weather dashboard with form inputs
     WHEN I search for a city
     THEN I am presented with current and future conditions for that city and that city is added to the search history
