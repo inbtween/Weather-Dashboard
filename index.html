@@ -58,19 +58,15 @@
           var searchValue = $("#searchValue").val();
           currentWeather(searchValue);
           console.log(searchValue);
-
+          
           $.get("https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=988c3620d7b8b93676443618f9978507", function(data) {
           console.log(data);
-       
 });
 
     });
         // This is our API key. Add your own API key between the ""
         var APIKey = "988c3620d7b8b93676443618f9978507";
-
         // Here we are building the URL we need to query the database
-
-
         function currentWeather(city) {
           console.log(city)
           // We then created an AJAX call
@@ -84,33 +80,26 @@
           }).then(function (response) {
             console.log(response);
             localStorage.setItem("history", JSON.stringify(city))
-            var title = $("<h3>").addClass("card-title").text(city + new Date().toLocaleDateString())
-            var date = $("<h3>").addClass("card-title").text("")
+            var title = $("<h3>").addClass("card-title").text(city + " " + new Date().toLocaleDateString())
+            var date = $("<h5>").addClass("card-title").text("")
               console.log(date) 
             var card = $("<div>").addClass("card")
-            var temperature = $("<p>").addClass("card-text").text(response.main.temp)
-            var humidity = $("<p>").addClass("card-text").text(response.main.humidity)
-            var wind = $("<p>").addClass("card-text").text(response.wind.speed)
+            var temperature = $("<p>").addClass("card-text").text(response.main.temp + ' °F')
+            var humidity = $("<p>").addClass("card-text").text(response.main.humidity + '%')
+            var wind = $("<p>").addClass("card-text").text(response.wind.speed + ' MPH')
             var uvIndex = $("<p>").addClass("card-text").text(response.value)
             var cardBody = $("<div>").addClass("card-body")
-            cardBody.append(title, 'Temp:', temperature, 'Humidity:', humidity, 'Wind:', wind,  'UVI:', uvIndex)
+            cardBody.append(title, 'Temperature:', temperature, 'Humidity:', humidity, 'Wind Speed:', wind,  'UV Index:', uvIndex)
             card.append(cardBody)
             $("#currentWeather").prepend(card)
 
             getUvindex(response.coord.lat, response.coord.lon) 
             getForecast(city)
             
-            // Create CODE HERE to Log the queryURL xdonex
-            // Create CODE HERE to log the resulting object
-            // Create CODE HERE to calculate the temperature (converted from Kelvin)
-            // Create CODE HERE to transfer content to HTML
-            // Hint: To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
-            // Create CODE HERE to dump the temperature content into HTML
           }).catch(function (error){
             console.log(error)
           })
         }
-
   //       //**Display five day weather
   // function display5day(noonWeather) {
   //   console.log("5 day", noonWeather);
@@ -155,14 +144,21 @@
             console.log("uv response: ", response)
             var uvIndex = $("<p>").addClass("card-text").text(response.value)
             var cardBody = $("<div>").addClass("card-body")
-            cardBody.append('UVI:', uvIndex)
-            card.append(cardBody)
+            var card = $("<div>").addClass("card")
             $("#currentWeather").prepend(card)
+            cardBody.append('UV Index:', uvIndex)
+            card.append(cardBody)
           })
         }
        });
 
    </script>
+    <!-- // Create CODE HERE to Log the queryURL xdonex
+    // Create CODE HERE to log the resulting object
+    // Create CODE HERE to calculate the temperature (converted from Kelvin)
+    // Create CODE HERE to transfer content to HTML
+    // Hint: To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
+    // Create CODE HERE to dump the temperature content into HTML -->
    <!-- //   add to search input results to search history
   //   localStorage.setItem("searchInfo", JSON.stringify(user));
     -->
