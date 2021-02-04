@@ -82,20 +82,20 @@
             localStorage.setItem("history", JSON.stringify(city))
             var title = $("<h3>").addClass("card-title").text(city + " " + new Date().toLocaleDateString())
             var date = $("<h5>").addClass("card-title").text("")
-              console.log(date) 
+            console.log(date) 
             var card = $("<div>").addClass("card")
             var temperature = $("<p>").addClass("card-text").text(response.main.temp + ' °F')
             var humidity = $("<p>").addClass("card-text").text(response.main.humidity + '%')
             var wind = $("<p>").addClass("card-text").text(response.wind.speed + ' MPH')
             var uvIndex = $("<p>").addClass("card-text").text(response.value)
             var cardBody = $("<div>").addClass("card-body")
-            cardBody.append(title, 'Temperature:', temperature, 'Humidity:', humidity, 'Wind Speed:', wind,  'UV Index:', uvIndex)
+            cardBody.append(title, 'Temperature:', temperature, 'Humidity:', humidity, 'Wind Speed:', wind)
             card.append(cardBody)
             $("#currentWeather").prepend(card)
-
-            getUvindex(response.coord.lat, response.coord.lon) 
-            getForecast(city)
             
+            getForecast(city)
+            getUvindex(response.coord.lat, response.coord.lon) 
+                        
           }).catch(function (error){
             console.log(error)
           })
@@ -110,29 +110,35 @@
   //     const iconUrl = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`;
   //     div.append(`<h2>${new Date(day.dt_txt).toLocaleDateString()}</h2>`);
   //     div.append(`<h2>${new Date().toLocaleDateString
-  //     div.append(`<img src="${iconUrl}">`);
+      // div.append(`<img src="${iconUrl}">`);
   //     div.append(`<div>Temp: ${day.main.temp}</div>`);
   //     div.append(`<div>Humidity: ${day.main.humidity}</div>`);
   //     forecast.append(div);
   //   });
   // }
-        function getForecast(city) {
+  function getForecast(city) {
           console.log("forecast", city)
           $.ajax({
-            url: `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIKey}`,
+            url: `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIKey}&units=imperial`,
             method: "GET"
           }).then(function (response){
             console.log(response)
             for(var i = 0; i < response.list.length; i+=8) {
-              var iconUrl = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`
               var col = $("<div>").addClass("col-lg-2")
               var card = $("<div>").addClass("card")
+                // var span = $('<span />').attr({'className':'folder_name' , 'text':'favre' });
               var cardBody = $("<div>").addClass("card-body")
-              var title = $("<h5>").addClass("card-title").text(new Date(response.list[i].dt_txt).toLocaleDateString())
-              var temp = $("<h5>").addClass("card-title").text(response.list.temp + ' °F')
-              var humidity = $("<h5>").addClass("card-title").text(response.list.humidity + '%')
-                col.append(card.append(cardBody.append(title,)))
-                $("#daily-weather").append(col)
+              var title = $("<h3>").addClass("card-title").text(new Date(response.list[i].dt_txt).toLocaleDateString())
+              // var locationIcon = document.querySelector('.weather-icon')
+              // var {icon} = data.weather[0]
+              // locationIcon.innerHTML = `<img src="icons/${icon}.png">`
+              // var iconUrl = `https://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`
+              // var iconUrl = `http://openweathermap.org/img/wn/10d@2x.png`
+              // var icon = $(`<img src="${iconUrl}">`)
+              var temp = $("<h5>").addClass("card-title").text(response.list[i].main.temp + ' °F')
+              var humidity = $("<h5>").addClass("card-title").text(response.list[i].main.humidity + '%')
+              col.append(card.append(cardBody.append(title, "Temp: ", temp, "Humidity: ", humidity)))
+              $("#daily-weather").append(col)
             }
           }) 
         }
@@ -147,7 +153,7 @@
             var uvIndex = $("<p>").addClass("card-text").text(response.value)
             var cardBody = $("<div>").addClass("card-body")
             var card = $("<div>").addClass("card")
-            $("#currentWeather").prepend(card)
+            $("#currentWeather").append(card)
             cardBody.append('UV Index:', uvIndex)
             card.append(cardBody)
           })
