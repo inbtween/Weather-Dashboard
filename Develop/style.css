@@ -178,3 +178,12 @@ div.container {
 .col-lg-2 {
   max-width: 100%;
 }
+
+.card-body {
+  background-color: lightslategray;
+  margin-right: 20px;
+}
+
+.card {
+  border: 0px;
+}
