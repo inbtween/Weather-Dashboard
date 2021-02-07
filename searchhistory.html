@@ -89,12 +89,12 @@
             var temperature = $("<p>").addClass("card-text").text(response.main.temp + ' °F')
             var humidity = $("<p>").addClass("card-text").text(response.main.humidity + '%')
             var wind = $("<p>").addClass("card-text").text(response.wind.speed + ' MPH')
-            var uvIndex = $("<p>").addClass("card-text").text(response.coord.lat, response.coord.lon)
+            // var uvIndex = $("<p>").addClass("card-text").text(response.coord.lat, response.coord.lon)
             var iconUrl = `http://openweathermap.org/img/wn/${response.weather[0].icon}.png`
             console.log(response.list)
             var icon = $(`<p><img src="${iconUrl}">`)
             var cardBody = $("<div>").addClass("card-body")
-            cardBody.append(title, 'Temperature:', temperature, icon, 'Humidity:', humidity, 'Wind Speed:', wind, 'UV Index: ', uvIndex)
+            cardBody.append(title, 'Temperature:', temperature, icon, 'Humidity:', humidity, 'Wind Speed:', wind)
             card.append(cardBody)
             $("#currentWeather").prepend(card)
             
