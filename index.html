@@ -28,7 +28,7 @@
     </div>
     <div class="container">
       <div class="search-box">
-        <form class=>
+        <form id="search-form" class=>
           <p>Search for a City:</p>
         </form>
         </div>
@@ -58,7 +58,7 @@
         $("#search").on("click", function () {
           var searchValue = $("#searchValue").val();
           currentWeather(searchValue);
-          console.log(searchValue);
+          // console.log(searchValue);
           
           $.get("https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=988c3620d7b8b93676443618f9978507", function(data) {
           console.log(data);
@@ -69,7 +69,7 @@
         var APIKey = "988c3620d7b8b93676443618f9978507";
         // Here we are building the URL we need to query the database
         function currentWeather(city) {
-          console.log(city)
+          // console.log(city)
           // We then created an AJAX call
           $.ajax({
             url:
@@ -79,8 +79,23 @@
               APIKey,
             method: "GET",
           }).then(function (response) {
-            console.log(response);
-            localStorage.setItem("history", JSON.stringify(city))
+            // console.log(response);           
+            // window.localStorage.setItem("history", JSON.stringify([city]))
+            const history = JSON.parse(window.localStorage.getItem("history"))
+            // if(there's history then add to it) 
+            console.log(history)
+
+            if (history === null || history.length === 0 || history === undefined) {
+              window.localStorage.setItem("history", JSON.stringify([city]))
+            } 
+            else {
+              const newHistory = JSON.parse(window.localStorage.getItem("history"))
+              console.log(Array.isArray(newHistory))
+              newHistory.push(city)
+              window.localStorage.setItem("history", JSON.stringify(newHistory))
+              
+            }
+
             var title = $("<h3>").addClass("card-title").text(city + " " + new Date().toLocaleDateString())
             var search = $("<p>").text(city)
             var date = $("<h5>").addClass("card-title").text("")
@@ -101,7 +116,9 @@
             getForecast(city)
             getUvindex(response.coord.lat, response.coord.lon) 
                         
-          }).catch(function (error){
+          })
+          .catch(function (error)
+          {
             console.log(error)
           })
         }
@@ -145,6 +162,6 @@
        });
 
    </script>
-    <script src="/Develop/localstorage.js"></script>
+    <!-- <script src="/Develop/localstorage.js"></script> -->
   </body>
 </html>

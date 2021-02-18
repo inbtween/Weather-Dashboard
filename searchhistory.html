@@ -28,13 +28,14 @@
     </div>
     <div class="container">
       <div class="search-box">
-        <form class=>
+        <form id="search-form" class=>
           <p>Search for a City:</p>
         </form>
         </div>
        <input id="searchValue" type="text" placeholder="City..."/>
        <button id="search" class="btn btn-primary">Search</button>
-       <ul id="searchHistory"></ul>
+       <input id="add-search" type="text">
+      </form>
        <!-- Retrieved data will be dumped here -->
        <div class="container">
         <div class="row">
@@ -58,7 +59,9 @@
         $("#search").on("click", function () {
           var searchValue = $("#searchValue").val();
           currentWeather(searchValue);
-          console.log(searchValue);
+
+        
+          
           $.get("https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=988c3620d7b8b93676443618f9978507", function(data) {
           console.log(data);
 });
@@ -79,7 +82,7 @@
             method: "GET",
           }).then(function (response) {
             console.log(response);
-            localStorage.setItem("history", JSON.stringify(city))    
+            localStorage.setItem("history", JSON.stringify(city))
             var title = $("<h3>").addClass("card-title").text(city + " " + new Date().toLocaleDateString())
             var search = $("<p>").text(city)
             var date = $("<h5>").addClass("card-title").text("")
@@ -90,7 +93,7 @@
             var wind = $("<p>").addClass("card-text").text(response.wind.speed + ' MPH')
             // var uvIndex = $("<p>").addClass("card-text").text(response.coord.lat, response.coord.lon)
             var iconUrl = `http://openweathermap.org/img/wn/${response.weather[0].icon}.png`
-       
+            console.log(response.list)
             var icon = $(`<p><img src="${iconUrl}">`)
             var cardBody = $("<div>").addClass("card-body")
             cardBody.append(title, 'Temperature:', temperature, icon, 'Humidity:', humidity, 'Wind Speed:', wind)
@@ -141,9 +144,19 @@
             $("#currentWeather").append(card.append( cardBody.append('UV Index:', uvIndex)))
           })
         }
+
+
+      // Function for displaying the search info
+      // We're adding a click event listener to all elements with the class "search"
+      // We're adding the event listener to the document because it will work for dynamically generated elements
+      // $(".searchs").on("click") will only add listeners to elements that are on the page at that time
+      $(document).on("click", ".search", alertsearchName);
+
+      // Calling the renderButtons function to display the initial buttons
+      renderButtons();
        });
 
    </script>
-   <script src="/Develop/localstorage.js"></script>
+    <script src="/Develop/localstorage.js"></script>
   </body>
 </html>

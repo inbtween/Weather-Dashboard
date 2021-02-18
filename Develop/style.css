@@ -182,6 +182,8 @@ div.container {
 .card-body {
   background-color: lightslategray;
   margin-right: 20px;
+  padding-bottom: 20px;
+  border: 10px;
 }
 
 .card {
