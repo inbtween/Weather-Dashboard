@@ -97,23 +97,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function () {
-        $("#search").on("click", function () {
-          var searchHistory = $("#search-input").val();
-          currentWeather(searchHistory);
-         localStorage.setItem("search", JSON.stringify(searchHistory));
-         renderSearchHistory();
-          
-          $.get("https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=988c3620d7b8b93676443618f9978507", function(data) {
-          console.log(data)
-        });
-        $("#clear-history").on("click", function () {
-          var searchHistory = [];
-          renderSearchHistory();
-      
-        });
-
-         });
-        // This is our API key. Add your own API key between the ""
+      // This is our API key. Add your own API key between the ""
         var APIKey = "988c3620d7b8b93676443618f9978507";
         // Here we are building the URL we need to query the database
         function currentWeather(city) {
@@ -131,14 +115,18 @@
             // window.localStorage.setItem("history", JSON.stringify([city]))
             const history = JSON.parse(window.localStorage.getItem("history"))
             // if(there's history then add to it) 
-            console.log(history)
+            console.log("this is history", history)
 
-            if (history === null || history.length === 0 || history === undefined) {
-              window.localStorage.setItem("history", JSON.stringify([city]))
+            if (history === null || history.length === 0 || history === undefined) { 
+              searchHistory = "New York"
+              // window.localStorage.setItem("history", JSON.stringify([city]))
+              localStorage.setItem("search", JSON.stringify(city));
             } 
             else {
               const newHistory = JSON.parse(window.localStorage.getItem("history"))
               console.log(Array.isArray(newHistory))
+              // newHistory.push("New York")
+
               newHistory.push(city)
               window.localStorage.setItem("history", JSON.stringify(newHistory))
             }
@@ -153,7 +141,7 @@
             var wind = $("<p>").addClass("card-text").text(response.wind.speed + ' MPH')
             // var uvIndex = $("<p>").addClass("card-text").text(response.coord.lat, response.coord.lon)
             var iconUrl = `http://openweathermap.org/img/wn/${response.weather[0].icon}.png`
-            console.log(response.list)
+            console.log(response)
             var icon = $(`<p><img src="${iconUrl}">`)
             var cardBody = $("<div>").addClass("card-body")
             cardBody.append(title, 'Temperature:', temperature, icon, 'Humidity:', humidity, 'Wind Speed:', wind)
@@ -169,9 +157,18 @@
             console.log(error)
           })
         }
+        $("#search").on("click", function () {
+          var searchHistory = $("#search-input").val();
+          currentWeather(searchHistory);
+          console.log("search history", searchHistory)
+          localStorage.setItem("search", JSON.stringify(searchHistory));
+          $.get("https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=988c3620d7b8b93676443618f9978507", function(data) {
+          console.log(data)
+          });
+         });
  
   function getForecast(city) {
-          console.log("forecast", city)
+          console.log("forecast:", city)
           $.ajax({
             url: `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${APIKey}&units=imperial`,
             method: "GET"
@@ -197,15 +194,16 @@
             url:
               `http://api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=${APIKey}`,
             method: "GET",
-          }).then(function (response) {
+            }).then(function (response) {
             // getUvindex(response.coord.lat, response.coord.lon)
             console.log("uv response: ", response)
             var uvIndex = $("<p>").addClass("card-text").text(response.value)
             var cardBody = $("<div>").addClass("card-body")
             var card = $("<div>").addClass("card")
             $("#currentWeather").append(card.append( cardBody.append('UV Index:', uvIndex)))
-          })
-        }
+            })
+          }
+      // function searchHistory(city)  
        });
 
    </script>
