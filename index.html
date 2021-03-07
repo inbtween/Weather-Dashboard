@@ -76,26 +76,20 @@
                 </div>
             </div>
               </div>
-             <!-- current weather
-          <div id="currentWeather" class="col-md-8">
-          </div> -->
-     
         </div>
         <div id="daily-weather" class="row">
           <div class="class col-12">
-            <h4>5-Day Forecast:</h4>
+            <h4>5-Day Forecast</h4>
           </div>
         <div class="row">
-          <div id="forecast" class="col bg-primary text-white ml-3"></div>
-          <div id="forecast" class="col bg-primary text-white ml-3"></div>
-          <div id="forecast" class="col bg-primary text-white ml-3"></div>
-          <div id="forecast" class="col bg-primary text-white ml-3"></div>
-          <div id="forecast" class="col bg-primary text-white ml-3"></div>
+          <div id="forecast" class="col-lg-3"></div>
+          <div id="forecast" class="col-lg-3"></div>
+          <div id="forecast" class="col-lg-3"></div>
+          <div id="forecast" class="col-lg-3"></div>
+          <div id="forecast" class="col-lg-3"></div>
         </div>
-
      </div>
     </div>
-
      <!-- script -->
     <script type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -106,13 +100,19 @@
         $("#search").on("click", function () {
           var searchHistory = $("#search-input").val();
           currentWeather(searchHistory);
-          // console.log(search-input);
+         localStorage.setItem("search", JSON.stringify(searchHistory));
+         renderSearchHistory();
           
           $.get("https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=988c3620d7b8b93676443618f9978507", function(data) {
-          console.log(data);
-});
+          console.log(data)
+        });
+        $("#clear-history").on("click", function () {
+          var searchHistory = [];
+          renderSearchHistory();
+      
+        });
 
-    });
+         });
         // This is our API key. Add your own API key between the ""
         var APIKey = "988c3620d7b8b93676443618f9978507";
         // Here we are building the URL we need to query the database
@@ -141,7 +141,6 @@
               console.log(Array.isArray(newHistory))
               newHistory.push(city)
               window.localStorage.setItem("history", JSON.stringify(newHistory))
-              
             }
 
             var title = $("<h3>").addClass("card-title").text(city + " " + new Date().toLocaleDateString())
@@ -179,7 +178,7 @@
           }).then(function (response){
             console.log(response)
             for(var i = 0; i < response.list.length; i+=8) {
-              var col = $("<div>").addClass("col-lg-2")
+              var col = $("<div>").addClass("col-lg-3")
               var card = $("<div>").addClass("card")
               var cardBody = $("<div>").addClass("card-body")
               var title = $("<h3>").addClass("card-title").text(new Date(response.list[i].dt_txt).toLocaleDateString())
@@ -210,6 +209,5 @@
        });
 
    </script>
-    <!-- <script src="/Develop/localstorage.js"></script> -->
   </body>
 </html>
