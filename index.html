@@ -26,18 +26,23 @@
       <h1 class="display-3">Weather Dashboard</h1>
     </header>
     <div class="container">
-      <div class="search-box">
-        <form id="search-form" class=>
-          <h3>Search for a City</h3>
-        </form>
-      </div>
-       <input id="searchValue" type="text" placeholder="City..."/>
+      <div class="row">
+        <div id="search-form" class="col-4">
+          <p>Search for a City</p>
+        </div>
+        <!-- city search history -->
+       <div class="input-group mb-3">
+        <input id="search-input" type="text" class="form-control" placeholder="City..."/>
        <button id="search" class="btn btn-primary">Search</button>
-      
-       <!-- Retrieved data will be dumped here -->
+       </div>
        <button id= "clear-history" class="btn btn-primary">
-         Clear History
-       </button>
+        Clear History
+      </button>
+      <form id="history"></form>
+      </div>
+       
+       <!-- Retrieved data will be dumped here -->
+       
        <div class="col-9">
           <div class="row mr-0">
             <div class="col-12 border border-dark m-3 rounded">
@@ -88,6 +93,9 @@
         </div>
 
      </div>
+    </div>
+
+     <!-- script -->
     <script type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -95,9 +103,9 @@
     <script type="text/javascript">
       $(document).ready(function () {
         $("#search").on("click", function () {
-          var searchValue = $("#searchValue").val();
-          currentWeather(searchValue);
-          // console.log(searchValue);
+          var searchHistory = $("#search-input").val();
+          currentWeather(searchHistory);
+          // console.log(search-input);
           
           $.get("https://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=988c3620d7b8b93676443618f9978507", function(data) {
           console.log(data);
